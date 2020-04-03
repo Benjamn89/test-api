@@ -8,21 +8,12 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.json({
-    hello: "hi",
+    "Man Man": "hi",
     "Hello again": "AGAIN?"
   });
 });
 
-app.use("/.netlify/functions/api", router, (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Acceess-Control-Allow-Headers", "*");
-
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-});
+app.use("/.netlify/functions/api", router);
 
 module.exports.handler = serverless(app);
 
